@@ -1,11 +1,11 @@
 version: '3'
 services:
   vch:
-    image: "microsoft/dotnet:2.1-sdk"
+    image: "mcr.microsoft.com/dotnet/sdk:2.1"
     command: dotnet run -c Release
     working_dir: /app/VchAPI
     ports:
-      - "127.0.0.1:19999:19999"
+      - "127.0.0.1:9999:19999"
     restart: always
     volumes:
      - ./:/app
