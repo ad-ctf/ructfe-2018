@@ -17,16 +17,7 @@ namespace NTPTools
         public async Task<ulong> GetTimestamp(IPEndPoint endpoint = null)
         {
             var address = endpoint ?? defaultTimeSource;
-            try
-            {
-                return await GetNetworkTime(address);
-            }
-            catch
-            {
-                // Old infra expected a dedicated NTP source at 10.10.10.10.
-                // Fall back to local time so UUID generation still works in standalone compose runs.
-                return unchecked((ulong)DateTime.UtcNow.ToUnixTimestamp());
-            }
+            return await GetNetworkTime(address);
         }
 
         public async Task<ulong> GetNetworkTime(IPEndPoint endpoint)
